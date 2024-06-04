@@ -5,8 +5,9 @@ const employeeSchema = mongoose.Schema({
     required: true,
   },
   roleId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "role",
+    required: true,
   },
   empcode: {
     type: String,
@@ -18,10 +19,6 @@ const employeeSchema = mongoose.Schema({
   },
   phone_number: {
     type: Number,
-    required: true,
-  },
-  password: {
-    type: String,
     required: true,
   },
 });
