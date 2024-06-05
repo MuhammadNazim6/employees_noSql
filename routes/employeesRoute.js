@@ -15,12 +15,3 @@ employeeRoute.put("/:id", updateEmployee);
 employeeRoute.delete("/:id", deleteEmployee);
 
 export default employeeRoute;
-
-// import session from 'express-session';
-// employeeRoute.use(
-//   session({
-//     secret: 'nrewnew',
-//     resave: false,
-//     saveUninitialized: true,
-//   })
-// );

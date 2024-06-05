@@ -27,8 +27,11 @@ const createRole = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -50,8 +53,11 @@ const getRole = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -68,7 +74,6 @@ const updateRole = async (req, res) => {
       return;
     }
     roleToUpdate.role_name = role;
-    console.log(roleToUpdate);
     const saved = await roleToUpdate.save();
     if (saved) {
       res.status(200).json({
@@ -82,8 +87,11 @@ const updateRole = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -103,8 +111,11 @@ const getAllRoles = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -124,8 +135,11 @@ const deleteRole = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 

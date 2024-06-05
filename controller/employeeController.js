@@ -15,8 +15,11 @@ const getAllEmployees = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -37,8 +40,11 @@ const getEmployee = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -73,8 +79,11 @@ const createEmployee = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -117,8 +126,11 @@ const updateEmployee = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
@@ -138,8 +150,11 @@ const deleteEmployee = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
-    return;
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+    });
   }
 };
 
