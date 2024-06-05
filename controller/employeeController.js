@@ -2,11 +2,27 @@ import employeeModel from "../models/employeeModel.js";
 
 const getAllEmployees = async (req, res) => {
   try {
-    const employees = await employeeModel.find().populate("roleId");
-    if (employees) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 3;
+    const skip = (page - 1) * limit;
+
+    const employees = await employeeModel
+      .find()
+      // .populate("roleId")
+      .skip(skip)
+      .limit(limit);
+    const totalEmployees = await employeeModel.countDocuments();
+
+    if (employees.length > 0) {
       res.status(200).json({
         success: true,
         data: employees,
+        pagination: {
+          page: page,
+          total: totalEmployees,
+          limit,
+          totalPages: Math.ceil(totalEmployees / limit),
+        },
       });
     } else {
       res.status(400).json({

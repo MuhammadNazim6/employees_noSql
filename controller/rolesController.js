@@ -97,12 +97,23 @@ const updateRole = async (req, res) => {
 
 const getAllRoles = async (req, res) => {
   try {
-    console.log("getAllRoles");
-    const roles = await roleModel.find();
-    if (roles) {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 5;
+    const skip = (page - 1) * limit;
+
+    const roles = await roleModel.find().skip(skip).limit(limit)
+    const totalRoles = await roleModel.countDocuments();
+
+    if (roles.length > 0) {
       res.status(200).json({
         success: false,
         data: roles,
+        pages:{
+          total:totalRoles,
+          page:page,
+          limit:limit,
+          totalPages:Math.ceil(totalRoles/limit)
+        }
       });
     } else {
       res.status(400).json({
